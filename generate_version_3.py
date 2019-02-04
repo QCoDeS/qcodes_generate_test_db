@@ -9,9 +9,6 @@ import numpy as np
 import utils as utils
 
 
-fixturepath = os.sep.join(os.path.realpath(__file__).split(os.sep)[:-2])
-fixturepath = os.path.join(fixturepath, 'fixtures', 'db_files')
-
 
 def generate_empty_DB_file():
     """
@@ -20,7 +17,7 @@ def generate_empty_DB_file():
 
     import qcodes.dataset.sqlite_base as sqlite_base
 
-    v3fixturepath = os.path.join(fixturepath, 'version3')
+    v3fixturepath = os.path.join(utils.fixturepath, 'version3')
     os.makedirs(v3fixturepath, exist_ok=True)
     path = os.path.join(v3fixturepath, 'empty.db')
 
@@ -41,7 +38,7 @@ def generate_DB_file_with_some_runs():
     # (although this hopefully plays no role)
     np.random.seed(0)
 
-    v3fixturepath = os.path.join(fixturepath, 'version3')
+    v3fixturepath = os.path.join(utils.fixturepath, 'version3')
     os.makedirs(v3fixturepath, exist_ok=True)
     path = os.path.join(v3fixturepath, 'some_runs.db')
 
@@ -98,7 +95,7 @@ def generate_DB_file_with_some_runs_having_not_run_descriptions():
         #3: run with parameters but run description is empty RunDescriber
         #4: run without parameters but run description is NULL
     """
-    v3fixturepath = os.path.join(fixturepath, 'version3')
+    v3fixturepath = os.path.join(utils.fixturepath, 'version3')
     os.makedirs(v3fixturepath, exist_ok=True)
     path = os.path.join(v3fixturepath, 'some_runs_without_run_description.db')
 
@@ -196,8 +193,9 @@ def generate_upgraded_v2_runs():
     This requires the v2 generation to be run before this one
     """
     import qcodes.dataset.sqlite_base as sqlite_base
-    v2fixture_path = os.path.join(fixturepath, 'version2', 'some_runs.db')
-    v3fixturepath = os.path.join(fixturepath, 'version3', 'some_runs_upgraded_2.db')
+    v2fixture_path = os.path.join(utils.fixturepath, 'version2', 'some_runs.db')
+    v3fixturepath = os.path.join(utils.fixturepath, 'version3',
+                                 'some_runs_upgraded_2.db')
     shutil.copy2(v2fixture_path, v3fixturepath)
     sqlite_base.connect(v3fixturepath)
 

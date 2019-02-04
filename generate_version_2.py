@@ -7,11 +7,6 @@ import numpy as np
 # do the git magic (which we do below), hence the relative import here
 import utils as utils
 
-
-fixturepath = os.sep.join(os.path.realpath(__file__).split(os.sep)[:-2])
-fixturepath = os.path.join(fixturepath, 'fixtures', 'db_files')
-
-
 def generate_empty_DB_file():
     """
     Generate the bare minimal DB file with no runs
@@ -19,7 +14,7 @@ def generate_empty_DB_file():
 
     import qcodes.dataset.sqlite_base as sqlite_base
 
-    v2fixturepath = os.path.join(fixturepath, 'version2')
+    v2fixturepath = os.path.join(utils.fixturepath, 'version2')
     os.makedirs(v2fixturepath, exist_ok=True)
     path = os.path.join(v2fixturepath, 'empty.db')
 
@@ -40,7 +35,7 @@ def generate_DB_file_with_some_runs():
     # (although this hopefully plays no role)
     np.random.seed(0)
 
-    v2fixturepath = os.path.join(fixturepath, 'version2')
+    v2fixturepath = os.path.join(utils.fixturepath, 'version2')
     os.makedirs(v2fixturepath, exist_ok=True)
     path = os.path.join(v2fixturepath, 'some_runs.db')
 
@@ -90,7 +85,7 @@ def generate_DB_file_with_empty_runs():
     Generate a DB file that holds empty runs and runs with no interdependencies
     """
 
-    v2fixturepath = os.path.join(fixturepath, 'version2')
+    v2fixturepath = os.path.join(utils.fixturepath, 'version2')
     os.makedirs(v2fixturepath, exist_ok=True)
     path = os.path.join(v2fixturepath, 'empty_runs.db')
 
