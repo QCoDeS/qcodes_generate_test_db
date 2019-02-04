@@ -1,5 +1,6 @@
 # General utilities for the database generation and loading scheme
 from typing import Dict, List, Tuple
+import importlib
 from contextlib import contextmanager
 import os
 
@@ -26,8 +27,13 @@ GIT_HASHES: Dict[int, str] = {0: '78d42620fc245a975b5a615ed5e33061baac7846',
                               2: '5202255924542dad6841dfe3d941a7f80c43956c',
                               3: '01cb405d47b72b1a5bab227dcf4b69866ecebb0f'}
 
-gitrepopath = os.sep.join(os.path.realpath(__file__).split(os.sep)[:-5])
+__initpath = os.path.realpath(importlib.util.find_spec('qcodes').origin)
+gitrepopath = os.sep.join(__initpath.split(os.path.sep)[:-2])
+
 repo = Repo(gitrepopath)
+
+fixturepath = os.path.join(gitrepopath, 'qcodes', 'tests', 'dataset',
+                           'fixtures', 'db_files')
 
 
 @contextmanager
@@ -80,6 +86,5 @@ def checkout_to_old_version_and_run_generators(version: int,
                              ' mode, can not proceed. To use this script, '
                              'uninstall QCoDeS and reinstall it with pip '
                              'install -e <path-to-qcodes-folder>')
-
         for generator in gens:
             generator()
