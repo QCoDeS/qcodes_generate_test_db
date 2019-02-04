@@ -125,7 +125,7 @@ def generate_DB_file_with_some_runs_having_not_run_descriptions():
     meas.register_parameter(params[0])
     meas.register_parameter(params[1])
     meas.register_parameter(params[2], basis=(params[0],))
-    meas.register_parameter(params[3], basis=(params[1],))
+    meas.register_parameter(params[3], basis=(params[1], params[0]))
     meas.register_parameter(params[4], setpoints=(params[2], params[3]))
 
     # Initially make 3 correct runs
