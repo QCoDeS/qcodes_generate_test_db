@@ -115,7 +115,7 @@ def generate_DB_file_with_some_runs_having_not_run_descriptions():
 
     # Now make some parameters to use in measurements
     params = []
-    for n in range(5):
+    for n in range(6):
         params.append(Parameter(f'p{n}', label=f'Parameter {n}',
                                 unit=f'unit {n}', set_cmd=None, get_cmd=None))
 
@@ -127,6 +127,7 @@ def generate_DB_file_with_some_runs_having_not_run_descriptions():
     meas.register_parameter(params[2], basis=(params[0],))
     meas.register_parameter(params[3], basis=(params[1], params[0]))
     meas.register_parameter(params[4], setpoints=(params[2], params[3]))
+    meas.register_parameter(params[5], basis=(params[0],))
 
     # Initially make 3 correct runs
 
