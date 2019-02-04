@@ -25,7 +25,7 @@ from git import Repo
 GIT_HASHES: Dict[int, str] = {0: '78d42620fc245a975b5a615ed5e33061baac7846',
                               1: '056d59627e22fa3ca7aad4c265e9897c343f79cf',
                               2: '5202255924542dad6841dfe3d941a7f80c43956c',
-                              3: '01cb405d47b72b1a5bab227dcf4b69866ecebb0f'}
+                              3: '37d89f093e6498389454fc536601c5d4c5fefe66'}
 
 __initpath = os.path.realpath(importlib.util.find_spec('qcodes').origin)
 gitrepopath = os.sep.join(__initpath.split(os.path.sep)[:-2])
