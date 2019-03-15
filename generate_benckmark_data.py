@@ -7,6 +7,7 @@ from qcodes.dataset.measurements import Measurement
 import numpy as np
 import time
 
+
 def generate_data_for_db(dependencies: int,
                          dependents: int,
                          shape: Sequence[int],
@@ -69,27 +70,3 @@ def generate_data_for_db(dependencies: int,
         output.append((param_name, np.random.rand(*shape)))
 
     return output
-
-
-if __name__ == '__main__':
-    db_path = os.path.join(os.getcwd(), 'qcplotbenchmark.db')
-    db_conn = connect(db_path)
-    exp = Experiment(name='benchmarks',
-                     sample_name='no_sample',
-                     conn=db_conn)
-    times = []
-    for i in range(1000):
-        start = time.perf_counter()
-        meas = Measurement(exp=exp)
-        data = generate_data_for_db(2, 1, (1000, 1000),
-                                    paramtype='array',
-                                    measurement=meas, on_grid=True)
-        with meas.run() as datasaver:
-            datasaver.add_result(*data)
-        stop = time.perf_counter()
-        times.append(stop-start)
-
-    print(times[:10])
-    print(times[-10:-1])
-    print(max(times))
-    print(min(times))
