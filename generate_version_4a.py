@@ -24,9 +24,9 @@ def generate_DB_file_with_some_runs():
     # (although this hopefully plays no role)
     np.random.seed(0)
 
-    v3fixturepath = os.path.join(utils.fixturepath, 'version4a')
-    os.makedirs(v3fixturepath, exist_ok=True)
-    path = os.path.join(v3fixturepath, 'some_runs.db')
+    v4afixturepath = os.path.join(utils.fixturepath, 'version4a')
+    os.makedirs(v4afixturepath, exist_ok=True)
+    path = os.path.join(v4afixturepath, 'some_runs.db')
 
     if os.path.exists(path):
         os.remove(path)
