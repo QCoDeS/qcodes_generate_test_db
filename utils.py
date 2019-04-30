@@ -1,5 +1,5 @@
 # General utilities for the database generation and loading scheme
-from typing import Dict, List, Tuple
+from typing import Dict, List, Tuple, Union
 import importlib
 from contextlib import contextmanager
 import os
@@ -17,15 +17,24 @@ from git import Repo
 #
 # Version 3: run_description column is added to the runs table
 #
+# Version 4: is actually version 3 again, but has a separate upgrader
+#   to fix bugs in how the run_description was written
+#
+# The version '4a' hash represents a merge commit that accidentally broke the
+# way run_descriptions were written. Since a fix was quickly implemented, we
+# do not promote this to a schema upgrade, but leave it as a fix function.
+# We do, however, still need a DB with the bug in it to test the fix.
 
 # NOTE that each hash is supposed to be representing a commit JUST before the
 # "next" version is being introduced.
 #
 
-GIT_HASHES: Dict[int, str] = {0: '78d42620fc245a975b5a615ed5e33061baac7846',
-                              1: '056d59627e22fa3ca7aad4c265e9897c343f79cf',
-                              2: '5202255924542dad6841dfe3d941a7f80c43956c',
-                              3: '17436006caceaeb42ea66e5cbaca40bb4c54306a'}
+GIT_HASHES: Dict[Union[int, str], str] = {
+    0: '78d42620fc245a975b5a615ed5e33061baac7846',
+    1: '056d59627e22fa3ca7aad4c265e9897c343f79cf',
+    2: '5202255924542dad6841dfe3d941a7f80c43956c',
+    3: '17436006caceaeb42ea66e5cbaca40bb4c54306a',
+    '4a': '6b8f4d1940215a8cefc5f4c399c6aaaeee082d54'}
 
 __initpath = os.path.realpath(importlib.util.find_spec('qcodes').origin)
 gitrepopath = os.sep.join(__initpath.split(os.path.sep)[:-2])
@@ -63,7 +72,7 @@ def leave_untouched(repo):
             repo.git.checkout(current_branch)
 
 
-def checkout_to_old_version_and_run_generators(version: int,
+def checkout_to_old_version_and_run_generators(version: Union[int, str],
                                                gens: Tuple) -> None:
     """
     Check out the repo to an older version and run the generating functions
