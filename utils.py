@@ -20,6 +20,8 @@ from git import Repo
 # Version 4a: is actually version 3 again, but has a separate upgrader
 #   to fix bugs in how the run_description was written
 #
+# Version 4: snapshot column is made always present in the runs table
+#
 # The version '4a' hash represents a merge commit that accidentally broke the
 # way run_descriptions were written. Since a fix was quickly implemented, we
 # do not promote this to a schema upgrade, but leave it as a fix function.
@@ -34,7 +36,8 @@ GIT_HASHES: Dict[Union[int, str], str] = {
     1: '056d59627e22fa3ca7aad4c265e9897c343f79cf',
     2: '5202255924542dad6841dfe3d941a7f80c43956c',
     3: '17436006caceaeb42ea66e5cbaca40bb4c54306a',
-    '4a': '6b8f4d1940215a8cefc5f4c399c6aaaeee082d54'}
+    '4a': '6b8f4d1940215a8cefc5f4c399c6aaaeee082d54',
+    4: '57ad8711d158f68ecf101006bb8f2072aee157ab'}
 
 __initpath = os.path.realpath(importlib.util.find_spec('qcodes').origin)
 gitrepopath = os.sep.join(__initpath.split(os.path.sep)[:-2])
