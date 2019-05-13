@@ -17,7 +17,7 @@ from git import Repo
 #
 # Version 3: run_description column is added to the runs table
 #
-# Version 4: is actually version 3 again, but has a separate upgrader
+# Version 4a: is actually version 3 again, but has a separate upgrader
 #   to fix bugs in how the run_description was written
 #
 # The version '4a' hash represents a merge commit that accidentally broke the
