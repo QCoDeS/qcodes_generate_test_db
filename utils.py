@@ -15,7 +15,10 @@ from git import Repo
 #
 # Version 2: indices are added to runs; GUID and exp_id
 #
-# Version 3: run_description column is added to the runs table
+#
+# Upgrade from 3 to 4: fixes two bugs in the inferred annotation which
+#   come from the previous "upgrade from 2 to 3" by redoing that
+#   "upgrade from 2 to 3" without those bugs.
 #
 # Version 4a: is actually version 3 again, but has a separate upgrader
 #   to fix bugs in how the run_description was written
