@@ -18,8 +18,8 @@ from git import Repo
 # Upgrade from 2 to 3: run_description column is added to the runs table
 #
 # Upgrade from 3 to 4: fixes two bugs in the inferred annotation which
-#   come from the previous "upgrade from 2 to 3" by redoing that
-#   "upgrade from 2 to 3" without those bugs.
+#   come from the previous "upgrade from 2 to 3"; this upgrade basically
+#   re-does the "upgrade from 2 to 3" but without those bugs.
 #
 # Fix for version 4 (the fix is called 4a): is actually version 4 again,
 #   but has a separate upgrader to fix bugs in how the run_description was
