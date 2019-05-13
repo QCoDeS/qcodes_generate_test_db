@@ -21,9 +21,9 @@ from git import Repo
 #   come from the previous "upgrade from 2 to 3"; this upgrade basically
 #   re-does the "upgrade from 2 to 3" but without those bugs.
 #
-# Fix for version 4 (the fix is called 4a): is actually version 4 again,
-#   but has a separate upgrader to fix bugs in how the run_description was
-#   written
+# Fix for version 4: a bug was introduced that accidentally wrote an 
+#   invalid runs description. The bug is reproduced by version 4a.
+#   The commit of version 4 does not have the bug.
 #
 # Upgrade from 4 to 5: snapshot column is made always present
 #   in the runs table
