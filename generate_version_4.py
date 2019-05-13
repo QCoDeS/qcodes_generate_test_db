@@ -209,4 +209,4 @@ if __name__ == '__main__':
             generate_DB_file_with_runs_and_snapshots)
 
     # pylint: disable=E1101
-    utils.checkout_to_old_version_and_run_generators(version='4a', gens=gens)
+    utils.checkout_to_old_version_and_run_generators(version=4, gens=gens)
