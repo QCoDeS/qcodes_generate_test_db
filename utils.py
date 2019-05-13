@@ -1,5 +1,5 @@
 # General utilities for the database generation and loading scheme
-from typing import Dict, List, Tuple, Union
+from typing import Dict, Tuple, Union
 import importlib
 from contextlib import contextmanager
 import os
@@ -8,22 +8,25 @@ from git import Repo
 
 # A brief overview of what each version introduces:
 #
-# Version 0: the original table schema, runs, experiments, layouts,
-# dependencies, result-tables
+# Inception of version 0: the original table schema, runs, experiments,
+# layouts, dependencies, result-tables
 #
-# Version 1: a GUID column is added to the runs table
+# Upgrade from 0 to 1: a GUID column is added to the runs table
 #
-# Version 2: indices are added to runs; GUID and exp_id
+# Upgrade from 1 to 2: indices are added to runs; GUID and exp_id
 #
+# Upgrade from 2 to 3: run_description column is added to the runs table
 #
 # Upgrade from 3 to 4: fixes two bugs in the inferred annotation which
 #   come from the previous "upgrade from 2 to 3" by redoing that
 #   "upgrade from 2 to 3" without those bugs.
 #
-# Version 4a: is actually version 3 again, but has a separate upgrader
-#   to fix bugs in how the run_description was written
+# Fix for version 4 (the fix is called 4a): is actually version 4 again,
+#   but has a separate upgrader to fix bugs in how the run_description was
+#   written
 #
-# Version 4: snapshot column is made always present in the runs table
+# Upgrade from 4 to 5: snapshot column is made always present
+#   in the runs table
 #
 # The version '4a' hash represents a merge commit that accidentally broke the
 # way run_descriptions were written. Since a fix was quickly implemented, we
