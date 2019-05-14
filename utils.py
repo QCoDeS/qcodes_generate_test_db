@@ -21,12 +21,16 @@ from git import Repo
 #   come from the previous "upgrade from 2 to 3"; this upgrade basically
 #   re-does the "upgrade from 2 to 3" but without those bugs.
 #
-# Fix for version 4: a bug was introduced that accidentally wrote an 
+# Fix for version 4: a bug was introduced that accidentally wrote an
 #   invalid runs description. The bug is reproduced by version 4a.
 #   The commit of version 4 does not have the bug.
 #
 # Upgrade from 4 to 5: snapshot column is made always present
 #   in the runs table
+#
+# Upgrade from 5 to 6: a top-level 'version' field is made present in the
+#   runs_description JSON string
+#
 #
 # The version '4a' hash represents a merge commit that accidentally broke the
 # way run_descriptions were written. Since a fix was quickly implemented, we
@@ -43,7 +47,8 @@ GIT_HASHES: Dict[Union[int, str], str] = {
     2: '5202255924542dad6841dfe3d941a7f80c43956c',
     3: '17436006caceaeb42ea66e5cbaca40bb4c54306a',
     '4a': '6b8f4d1940215a8cefc5f4c399c6aaaeee082d54',
-    4: '57ad8711d158f68ecf101006bb8f2072aee157ab'}
+    4: '57ad8711d158f68ecf101006bb8f2072aee157ab',
+    5: '660a5534d83f245d772f600839ae3833dcfc8e09'}
 
 __initpath = os.path.realpath(importlib.util.find_spec('qcodes').origin)
 gitrepopath = os.sep.join(__initpath.split(os.path.sep)[:-2])
