@@ -18,7 +18,7 @@ def generate_empty_DB_file(version=VERSION):
     Generate an empty DB file with no runs
     """
 
-    import qcodes.dataset.sqlite_base as sqlite_base
+    from qcodes.dataset.sqlite.database import connect
 
     vNfixturepath = os.path.join(utils.fixturepath, f'version{version}')
     os.makedirs(vNfixturepath, exist_ok=True)
@@ -27,7 +27,7 @@ def generate_empty_DB_file(version=VERSION):
     if os.path.exists(path):
         os.remove(path)
 
-    sqlite_base.connect(path)
+    connect(path)
 
 
 def generate_DB_file_with_some_runs(version=VERSION):
@@ -48,7 +48,7 @@ def generate_DB_file_with_some_runs(version=VERSION):
     if os.path.exists(path):
         os.remove(path)
 
-    from qcodes.dataset.sqlite_base import connect
+    from qcodes.dataset.sqlite.database import connect
     from qcodes.dataset.measurements import Measurement
     from qcodes.dataset.experiment_container import Experiment
     from qcodes import Parameter
