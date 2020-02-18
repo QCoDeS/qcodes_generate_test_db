@@ -52,7 +52,7 @@ GIT_HASHES: Dict[Union[int, str], str] = {
     5: '660a5534d83f245d772f600839ae3833dcfc8e09',
     6: '670004b06d6af27d7d2286ff65fede64947893a2',
     7: 'd651e3d07ca34a1127a4f86e09e6449c7e809479',
-    8: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'}
+    8: '2a43ed4fc9518828e682b0c0681bc0b4dc5d3301'}
 
 __initpath = os.path.realpath(importlib.util.find_spec('qcodes').origin)
 gitrepopath = os.sep.join(__initpath.split(os.path.sep)[:-2])
