@@ -31,6 +31,7 @@ from git import Repo
 # Upgrade from 5 to 6: a top-level 'version' field is made present in the
 #   runs_description JSON string
 #
+# Upgrade from 8 to 9: a new index for `captured_run_id` is added
 #
 # The version '4a' hash represents a merge commit that accidentally broke the
 # way run_descriptions were written. Since a fix was quickly implemented, we
@@ -50,7 +51,8 @@ GIT_HASHES: Dict[Union[int, str], str] = {
     4: '57ad8711d158f68ecf101006bb8f2072aee157ab',
     5: '660a5534d83f245d772f600839ae3833dcfc8e09',
     6: '670004b06d6af27d7d2286ff65fede64947893a2',
-    7: 'd651e3d07ca34a1127a4f86e09e6449c7e809479'}
+    7: 'd651e3d07ca34a1127a4f86e09e6449c7e809479',
+    8: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'}
 
 __initpath = os.path.realpath(importlib.util.find_spec('qcodes').origin)
 gitrepopath = os.sep.join(__initpath.split(os.path.sep)[:-2])
